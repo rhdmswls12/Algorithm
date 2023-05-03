@@ -1,7 +1,7 @@
 function solution(arr) {
     let str="";
-    for(let i=0; i<arr.length; i++){
-        str+=arr[i];    
-    }
+    arr.map((a)=>{
+        str+=a
+    })
     return str
 }
