@@ -4,24 +4,22 @@ function solution(n, arr1, arr2) {
   let result = []
   let answer = []
   let row = arr1.length
-  let col =n
+  let col = n
 
   for (let i=0; i<row; i++) {
       key1.push(arr1[i].toString(2).split(''))
       key2.push(arr2[i].toString(2).split(''))
       
       for (let j=0; j<col; j++) {
-        if(key1[i].length<n) {
+        if(key1[i].length < n) {
           key1[i].unshift('0')
         }
-        if(key2[i].length<n) {
+        if(key2[i].length < n) {
           key2[i].unshift('0')
         }
       }
       
   }
-  console.log(key1)
-  console.log(key2)
   for (let i=0; i<key1.length; i++) {
     const blank = []
     for (let j=0; j<key2.length; j++) {
