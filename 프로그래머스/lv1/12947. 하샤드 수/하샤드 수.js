@@ -4,9 +4,5 @@ function solution(n) {
   str.map(a => {
     test += parseInt(a)
   })
-  if (n % test == 0) {
-    return true
-  } else {
-    return false
-  }
+  return(n % test == 0)
 }
