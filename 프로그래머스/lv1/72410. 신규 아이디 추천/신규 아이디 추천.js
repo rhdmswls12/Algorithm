@@ -22,11 +22,9 @@ function solution(new_id) {
   let str = filteredId.join('')
   removedDot = str.replace(/\.+/g, '.') // 3단계 
                   .replace(/^\./,'') // 4단계
-                  // .replace(/\s/g,'a') //5단계
-  
   
   if (removedDot.length == 0) {
-    removedDot += 'a'
+    removedDot += 'a'  // 5단계
   }
   let array = []
   array = removedDot.split('')
