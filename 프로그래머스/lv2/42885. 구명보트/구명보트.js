@@ -3,15 +3,24 @@ function solution(people, limit) {
   
   people.sort((a, b) => a - b)
     
-  while(people.length != 0) {
-    if (people[0] + people[people.length-1] <= limit) {
-      boat++
-      people.splice(0,1)
-      people.pop()
-    } else {
-      boat++
-      people.pop()
+  const toBoat = (arr, limit) => {
+    if (arr.length != 0) {
+      for (let i=0; i<arr.length; i++) {
+        if (arr[0] + arr[arr.length-1] <= limit) {
+          boat++
+          arr.splice(0, 1)
+          arr.pop()
+        } else {
+          boat++
+          arr.pop()
+        }
+      }
     }
+    if (arr.length > 0) {
+      toBoat(arr,limit)
+    }
+    
   }
+  toBoat(people, limit)
   return boat
 }
