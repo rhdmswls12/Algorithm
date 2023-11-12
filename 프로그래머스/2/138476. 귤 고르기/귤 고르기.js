@@ -11,10 +11,8 @@ function solution(k, tangerine) {
           type[item] = 1
       }
   })
-  for (let key in type) {
-      sorted.push(type[key])
-  }
-  sorted = sorted.sort((a, b) => b - a)
+  
+  sorted = Object.values(type).sort((a, b) => b - a)
   for (let i=0; i<sorted.length; i++) {
       if (sum >= k) break
       sum += sorted[i]
