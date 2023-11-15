@@ -1,16 +1,7 @@
 function solution(phone_book) {
-  let myMap = new Map();
-
-  for (const phone of phone_book) {
-    myMap.set(phone, true)
-  }
-  for (const phone of phone_book) {
-    for (let i=1; i<phone.length; i++) {
-      const prefix = phone.slice(0, i)
-      if (myMap.get(prefix)) {
-        return false
-      }
+    phone_book.sort()
+    for (let i=1; i<phone_book.length; i++) {
+        if (phone_book[i].startsWith(phone_book[i-1])) return false
     }
-  }
-  return true
+    return true
 }
