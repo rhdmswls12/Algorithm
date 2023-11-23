@@ -1,20 +1,21 @@
 function solution(progresses, speeds) {
-    let result = []
-    let count = 1
+    let answer = []
     progresses.forEach((progress, i) => {
-        progresses[i] = Math.ceil((100-progress) / speeds[i])
+        progresses[i] = Math.ceil((100-progresses[i])/speeds[i])
     })
-    let cur = progresses[0]
+    let stack = [progresses[0]]
+    let count = 1
     for (let i=1; i<progresses.length; i++) {
-        if (cur >= progresses[i]) {
-            count++
-        } else {
-            cur = progresses[i]
-            result.push(count)
+        let max = Math.max(...stack)
+        if (max < progresses[i]) {
+            answer.push(count)
+            stack.pop()
             count = 1
+        } else {
+            count++
         }
+        stack.push(progresses[i])
     }
-    result.push(count)
-    
-    return result
+    answer.push(count)
+    return answer
 }
