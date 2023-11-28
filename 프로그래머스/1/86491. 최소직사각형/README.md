@@ -1,10 +1,10 @@
 # [level 1] 최소직사각형 - 86491 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/86491) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/86491#qna) 
 
 ### 성능 요약
 
-메모리: 42.1 MB, 시간: 16.01 ms
+메모리: 41.9 MB, 시간: 8.24 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 10월 4일 16:28:1
+2023년 11월 2일 17:38:18
 
 ### 문제 설명
 
