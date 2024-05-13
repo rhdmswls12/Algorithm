@@ -1,8 +1,8 @@
 function solution(n) {
-    for (let i=1; i<=n; i++) {
-        if (n === i**2) {
-            return (i+1) ** 2
-        }
+    let sqrt = Math.sqrt(n)
+    if (sqrt % 1) {
+        return -1
+    } else {
+        return (sqrt + 1) ** 2
     }
-    return -1
 }
