@@ -1,15 +1,14 @@
-let count = 0;
 function solution(num) {
-    if (num === 1) return count;
-    if (count === 500) return -1;
+    let count = 0;
     
-    if (num % 2) {
-        num = num * 3 + 1;
-    } else {
-        num = num / 2;
+    while (num !== 1) {
+        if (count === 500) return -1;
+        if (num % 2) {
+            num = num * 3 + 1;
+        } else {
+            num = num / 2;
+        }
+        count++;
     }
-    
-    count++;
-    
-    return solution(num);
+    return count;
 }
