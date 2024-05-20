@@ -1,19 +1,11 @@
 function solution(left, right) {
-    let sum = 0
+    let answer = 0
     for (let i=left; i<=right; i++) {
-        const result = getDivisors(i)
-        if (result) {
-            sum -= i
+        if (Number.isInteger(Math.sqrt(i))) {
+            answer -= i
         } else {
-            sum += i
+            answer += i
         }
     }
-    return sum
-}
-function getDivisors(n) {
-    let cnt = 0
-    for (let i=1; i<=n; i++) {
-        if (n % i == 0) cnt++ 
-    }
-    return cnt % 2 ? true : false
+    return answer
 }
