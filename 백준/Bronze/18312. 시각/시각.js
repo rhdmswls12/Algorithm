@@ -1,27 +1,19 @@
-const input = require("fs")
+const [N, K] = require("fs")
   .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input2.txt")
   .toString()
   .trim()
-  .split(" ");
-let a = Number(input[0]);
-let b = input[1];
+  .split(" ")
+  .map(Number);
+
 let count = 0;
-for (let i = 0; i <= a; i++) {
-  for (let j = 0; j <= 59; j++) {
-    for (let k = 0; k <= 59; k++) {
+for (let h = 0; h <= N; h++) {
+  for (let m = 0; m <= 59; m++) {
+    for (let s = 0; s <= 59; s++) {
       if (
-        i.toString().padStart(2, 0).includes(b) ||
-        j.toString().padStart(2, 0).includes(b) ||
-        k.toString().padStart(2, 0).includes(b)
+        h.toString().padStart(2, "0").includes(K) ||
+        m.toString().padStart(2, "0").includes(K) ||
+        s.toString().padStart(2, "0").includes(K)
       )
-        // if (
-        //   i % 10 == b ||
-        //   i / 10 == b ||
-        //   j % 10 == b ||
-        //   j / 10 == b ||
-        //   k % 10 == b ||
-        //   k / 10 == b
-        // )
         count++;
     }
   }
