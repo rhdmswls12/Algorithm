@@ -1,18 +1,18 @@
 function solution(s) {
-    let count = 0
-    let zero = 0
-    while(s.length !== 1) {
-        let one = 0
-        
-        for (let i=0; i<s.length; i++) {
-            if (s[i] === '1') {
-                one++
+    let zeroCnt = 0;
+    let count = 0;
+    
+    while(s != '1') {
+        let arr = []
+        for (let num of s) {
+            if (num != 0) {
+                arr.push(num)
             } else {
-                zero++
+                zeroCnt++
             }
         }
-        s = one.toString(2)
         count++
+        s = arr.length.toString(2)
     }
-    return [count, zero]
+    return [count, zeroCnt]
 }
