@@ -1,10 +1,12 @@
 function solution(numbers) {
-    let set = new Set()
-    numbers = numbers.sort((a, b) => a - b)
+    let result = [];
+    let set = new Set();
     for (let i=0; i<numbers.length; i++) {
         for (let j=i+1; j<numbers.length; j++) {
-            set.add(numbers[i] + numbers[j])
+            let sum = numbers[i] + numbers[j];
+            set.add(sum);
         }
     }
-    return [...set].sort((a, b) => a - b)
+    result = [...set].sort((a, b) => a - b);
+    return result;
 }
