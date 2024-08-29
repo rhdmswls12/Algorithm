@@ -1,13 +1,10 @@
 function solution(array, commands) {
-  let answer = []
-  for (const command of commands) {
-      let i = command[0]
-      let j = command[1]
-      let k = command[2]
-      
-      let sliced = array.slice(i-1, j)
-      sliced.sort((a, b) => a - b)
-      answer.push(sliced[k-1]) 
-  }
-    return answer
+    const result = [];
+    
+    for (let i=0; i<commands.length; i++) {
+        const [start,end,target] = commands[i];
+        let slicedArr = array.slice(start-1, end).sort((a,b) => a - b);
+        result.push(slicedArr[target-1]);
+    }
+    return result;
 }
