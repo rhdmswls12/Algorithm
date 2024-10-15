@@ -1,18 +1,15 @@
 function solution(s){
-    const array = s.split("");
     const stack = [];
     
-    const obj = {
-        "(": -1,
-        ")": 1
-    }
-    for (let i=0; i<array.length; i++) {
-        let curr = array[i];
-        if (obj[stack[stack.length-1]]<0 && obj[stack[stack.length-1]]+obj[curr] == 0) {
+    for (let i=0; i<s.length; i++) {
+        if (s[i] === '(') {
+            stack.push(s[i]);
+        } else if (s[i] === ')' && stack[stack.length-1] === '(') {
             stack.pop();
         } else {
-          stack.push(curr);  
+            stack.push(s[i]);
         }
     }
+    
     return stack.length ? false : true;
 }
