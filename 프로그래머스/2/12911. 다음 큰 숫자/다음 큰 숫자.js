@@ -1,10 +1,8 @@
 function solution(n) {
-    const check = n.toString(2).split('').filter(binary => binary === '1').length;
-    let next = n+1;
-    while(true) {
-        if (check === next.toString(2).split('').filter(binary => binary === '1').length) {
-            return next;
+    const check = n.toString(2).match(/1/g).length;
+    while(n++) {
+        if (check === n.toString(2).match(/1/g).length) {
+            return n;
         }
-        next++;
     }
 }
