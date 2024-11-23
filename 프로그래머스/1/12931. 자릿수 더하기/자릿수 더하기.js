@@ -1,7 +1,4 @@
-function solution(n) {
-    let s = (n + '').split('')
-    let answer = s.reduce((acc, cur) => {
-        return acc + parseInt(cur)
-    },0)
-    return answer
+function solution(n){
+    let nums = n.toString().split('').map(s => Number(s));
+    return nums.reduce((acc, cur) => acc + cur, 0);
 }
