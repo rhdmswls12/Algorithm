@@ -1,7 +1,10 @@
 function solution(A,B){
-    A.sort((a, b) => a - b);
-    B.sort((a, b) => b - a);
+    let answer = 0;
+    A = A.sort((a, b) => a - b);
+    B = B.sort((a, b) => b - a);
     
-    const sum = A.reduce((acc, cur, idx) => (acc + cur * B[idx]), 0)
-    return sum;
+    for (let i=0; i<A.length; i++) {
+        answer += A[i] * B[i];
+    }
+    return answer;
 }
