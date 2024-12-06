@@ -1,12 +1,14 @@
 function solution(s){
-    let arr = s.toLowerCase().split('');
-    let count = 0;
-    for (let i=0; i<arr.length; i++) {
-        if (arr[i] === 'p') {
-            count++;
-        } else if (arr[i] === 'y') {
-            count--;
+    let p = 0;
+    let y = 0;
+    s = s.toUpperCase();
+    for (let str of s) {
+        if (str === 'P') {
+            p++;
+        } else if (str === 'Y') {
+            y++;
         }
     }
-    return count ? false : true;
+    if (!p && !y) return true;
+    return p === y ? true : false;
 }
