@@ -1,23 +1,42 @@
-function solution(cacheSize, cities) {
-    let time = 0
-    let cache = []
+// function solution(cacheSize, cities) {
+//     const hit = 1;
+//     const miss = 5;
+//     let answer = 0;
+//     cities = cities.map(city => city.toLowerCase());
     
-    if (!cacheSize) return 5 * cities.length;
+//     if (cacheSize === 0) return cities.length * miss;
     
-    cities.forEach(city => {
-        city = city.toUpperCase()
-        let idx = cache.indexOf(city)
+//     for (let i=0; i<cities.length; i++) {
+//         let check = cities.slice(i, i+cacheSize)
         
-        if (idx !== -1) {
-            time += 1
-            cache.splice(idx, 1)
+//         if (check.includes(cities[i+cacheSize])) {
+//             answer += hit;     
+//         } else {
+//             answer += miss;
+//         }
+//     }
+//     return answer;
+// }
+
+function solution(cacheSize, cities) {
+    let answer = 0;
+    const hit = 1;
+    const miss = 5;
+    const cache = [];
+
+    cities = cities.map(city => city.toLowerCase());
+    
+    for (let i=0; i<cities.length; i++) {
+        if(cache.includes(cities[i])) {
+            answer += hit;
+            cache.splice(cache.indexOf(cities[i]),1);
         } else {
-            time += 5
-            if (cache.length >= cacheSize) {
-                cache.shift()
-            }
+            answer += miss;
         }
-        cache.push(city)
-    })
-    return time
+        cache.push(cities[i]);
+        
+        if(cache.length > cacheSize) cache.shift();
+    }
+
+    return answer;
 }
