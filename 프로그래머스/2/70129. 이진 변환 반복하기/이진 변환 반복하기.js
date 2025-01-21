@@ -1,18 +1,15 @@
 function solution(s) {
+    let cnt = 0;
     let zeroCnt = 0;
-    let count = 0;
     
-    while(s != '1') {
-        let arr = []
-        for (let num of s) {
-            if (num != 0) {
-                arr.push(num)
-            } else {
-                zeroCnt++
-            }
-        }
-        count++
-        s = arr.length.toString(2)
+    while (s !== '1') {
+        s = s.split('');
+        const zero = s.filter(str => str === '0').length;
+        zeroCnt += zero;
+        
+        s = (s.length - zero).toString(2);
+        cnt++;
     }
-    return [count, zeroCnt]
+    
+    return [cnt, zeroCnt];
 }
