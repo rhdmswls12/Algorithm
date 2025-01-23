@@ -1,8 +1,9 @@
 function solution(n) {
-    const check = n.toString(2).match(/1/g).length;
-    while(n++) {
-        if (check === n.toString(2).match(/1/g).length) {
-            return n;
-        }
+    const older = n.toString(2).split('').filter((str) => str === '1').length;
+    let newer;
+    while(newer !== older) {
+        newer = (n+1).toString(2).split('').filter((str) => str === '1').length;
+        n++;
     }
+    return n;
 }
