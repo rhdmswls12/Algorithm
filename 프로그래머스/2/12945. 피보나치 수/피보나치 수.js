@@ -5,3 +5,4 @@ function solution(n) {
     }
     return fibonacci[n];
 }
+
