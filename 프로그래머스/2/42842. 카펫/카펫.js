@@ -2,22 +2,14 @@
 // 각 (w, h) 쌍에 대해 w >= h인지 확인한다.
 // (w - 2) * (h - 2) == yellow를 만족하는지 체크한다.
 function solution(brown, yellow) {
-    let answer = [];
-    let nums = [];
-    for (let i=1; i<=brown+yellow; i++) {
-        if ((brown+yellow) % i === 0) {
-            nums.push(i);
-        }
-    }
-    for (let i=nums.length-1; i>0; i--) {
-        for (let j=0; j<nums.length; j++) {
-            let w = nums[i];
-            let h = nums[j];
-            if (w>=h && (w-2)*(h-2)===yellow) {
-                answer = [w, h];
+    let total = brown + yellow; // 전체 카펫 크기
+    
+    for (let h=3; h<=Math.sqrt(total); h++) {
+        if (total % h === 0) {
+            let w = total / h; // w * h = total
+            if ((w-2) * (h-2) === yellow) { 
+                return [w, h]; // 가로가 더 크거나 같으므로 순서 유지
             }
         }
     }
-    console.log(answer);
-    return answer;
 }
