@@ -1,17 +1,16 @@
 function solution(n, words) {
-    let answer = [0, 0]
-    let passed = [words[0]] 
+    let answer = [0, 0];
+    let passed = [words[0]];
     
     for (let i=1; i<words.length; i++) {
-        let prev = passed[passed.length-1]
-        let same = passed.findIndex(pass => pass === words[i])
-        if (prev.slice(-1) !== words[i].slice(0,1) || same !== -1) {
-            answer[0] = (i%n) + 1
-            answer[1] = Math.ceil((i+1) / n)
-            return answer
+        let last = passed[passed.length-1];
+        
+        if (passed.includes(words[i]) 
+            || last?.slice(-1) !== words[i][0]) {
+            return [i%n+1, Math.floor(i/n)+1];        
         } else {
-            passed.push(words[i])
+            passed.push(words[i]);
         }
     }
-    return answer
+    return answer;
 }
