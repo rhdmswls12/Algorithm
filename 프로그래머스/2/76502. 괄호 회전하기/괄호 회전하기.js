@@ -1,31 +1,34 @@
 function solution(s) {
-    let count = 0
-    let result = 0
-    s = s.split('')
-    
+    let answer = 0;
+    let arr = s.split('');
     for (let i=0; i<s.length; i++) {
-        let curr = s.shift()
-        s.push(curr)
-        result += judje(s)
+        if (check(arr)) answer++;
+        let first = arr.shift();
+        arr.push(first);
     }
-    return result
+    return answer;
 }
-const judje = (arr) => {
-    let stack = []
-    let count = 0
-    let object = {
-        '(' : ')',
-        '{' : '}',
-        '[' : ']'
+function check(arr) {
+    const points = {
+        '[': -1,
+        ']': 1,
+        '(': -2,
+        ')': 2,
+        '{': -3,
+        '}': 3
     }
+    let stack = [];
+    
     for (let i=0; i<arr.length; i++) {
-        if (object[stack[stack.length-1]] === arr[i]) {
-            stack.pop()
+        let last = stack[stack.length-1];
+        
+        if (points[last] > 0) return false;
+        
+        if (points[last] + points[arr[i]] === 0) {
+            stack.pop();
         } else {
-            stack.push(arr[i])
+            stack.push(arr[i]);
         }
     }
-    if (!stack.length) count++
-    
-    return count
+    return stack.length ? false : true;
 }
