@@ -1,34 +1,18 @@
 function solution(want, number, discount) {
     let result = 0;
-    let arr = [];
-    const sum = number.reduce((acc, cur) => acc + cur, 0);
     
-    for (let i=0; i<want.length; i++) {
-        for (let j=0; j<number[i]; j++) {
-            arr.push(want[i]);
+    const check = (map) => {
+        for (let j=0; j<number.length; j++) {
+            if (number[j] !== map.get(want[j])) return false;
         }
+        return true;
     }
-    arr.sort();
-    const wants = makeObj(arr);
-    
-    for (let i=0; i<discount.length - sum + 1; i++) {
-        let check = makeObj(discount.slice(i, i + sum).sort());
-
-        if (JSON.stringify(check) === JSON.stringify(wants)) {
-            result++;
-        }
+    for (let i=0; i<=discount.length-10; i++) {
+        let map = new Map();
+        let slice = discount.slice(i, i+10);
+        slice.forEach(a => map.set(a, (map.get(a) || 0) + 1));
+        
+        if (check(map)) result++;
     }
     return result;
-}
-function makeObj(arr) {
-    let obj = {};
-    
-    for (let i=0; i<arr.length; i++) {
-        if (obj[arr[i]]) {
-            obj[arr[i]]++;
-        } else {
-            obj[arr[i]] = 1;
-        }
-    }
-    return obj;
 }
