@@ -1,10 +1,10 @@
 # [level 2] [1차] 뉴스 클러스터링 - 17677 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17677) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17677#qna) 
 
 ### 성능 요약
 
-메모리: 33.5 MB, 시간: 0.45 ms
+메모리: 36.9 MB, 시간: 9.13 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 11월 4일 21:34:44
+2025년 02월 19일 18:03:36
 
 ### 문제 설명
 
