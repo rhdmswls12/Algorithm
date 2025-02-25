@@ -1,12 +1,19 @@
 function solution(numbers) {
-    let answer = new Array(numbers.length).fill(-1)
-    let stack = []
+    let result = Array(numbers.length).fill(-1);
+    let stack = [];
     
-    for (let i=0; i<numbers.length; i++) {
-        while(stack && numbers[stack.at(-1)] < numbers[i]) {
-            answer[stack.pop()] = numbers[i]
+    for (let i=numbers.length-1; i>=0; i--) {
+        let cur = numbers[i];
+        
+        while (stack && stack[stack.length-1] <= cur) {
+            stack.pop();
         }
-        stack.push(i)
+        if (stack.length) {
+            result[i] = stack[stack.length-1];
+        }
+        
+        stack.push(cur);
+        
     }
-    return answer
+    return result;
 }
