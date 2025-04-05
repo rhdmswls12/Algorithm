@@ -1,6 +1,6 @@
 # [level 2] 가격대 별 상품 개수 구하기 - 131530 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/131530#qna) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/131530) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2023년 10월 4일 21:31:56
+2025년 04월 05일 21:41:32
 
 ### 문제 설명
 
