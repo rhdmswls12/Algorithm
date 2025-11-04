@@ -1,22 +1,23 @@
 function solution(topping) {
-    let answer = 0;
-    let left_set = new Set();
+    let count = 0;
+    let left = new Map();
+    let right = new Map();
     
-    let right_count = topping.reduce((acc, cur) => {
-        acc[cur] = (acc[cur] || 0) + 1;
-        return acc;
-    }, {});
-    
-    let right_unique = Object.keys(right_count).length;
-    
-    for (let i=0; i<topping.length-1; i++) {
-        left_set.add(topping[i]);
-        right_count[topping[i]]--;
-        
-        if (!right_count[topping[i]]) right_unique--;
-
-        if (left_set.size === right_unique) answer++;
+    for (let i=0; i<topping.length; i++) {
+        right.set(topping[i], (right.get(topping[i]) || 0) + 1);
     }
     
-    return answer;
+    for (let i=0; i<topping.length; i++) {
+        
+        left.set(topping[i], (left.get(topping[i]) || 0) + 1);
+        right.set(topping[i], (right.get(topping[i]) - 1));
+        
+        if (!right.get(topping[i])) right.delete(topping[i]);
+        
+        if (left.size === right.size) {
+            count++;
+        }
+    }
+
+    return count;
 }
