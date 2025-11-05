@@ -1,16 +1,17 @@
 function solution(numbers, target) {
-    let answer = 0;
-
-    function dfs(index, sum) {
-        if (index === numbers.length) {
-            if (sum === target) answer++; 
+    let count = 0;
+    
+    function calc(sum, idx) {
+        if (idx === numbers.length) {
+            if (sum === target) count++;
             return;
         }
+        
+        calc(sum - numbers[idx], idx + 1);
+        calc(sum + numbers[idx], idx + 1);
 
-        dfs(index + 1, sum + numbers[index]); 
-        dfs(index + 1, sum - numbers[index]); 
     }
-
-    dfs(0, 0);
-    return answer;
+    calc(0, 0);
+    
+    return count;
 }
