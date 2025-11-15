@@ -1,19 +1,25 @@
 function solution(n, times) {
+    
+    times.sort((a, b) => a - b);
+    
     let left = 1;
-    let right = Math.max(...times) * n;
+    let right = times[times.length-1] * n;
     let answer = right;
-
+    
     while (left <= right) {
         let mid = Math.floor((left + right) / 2);
-        let count = times.reduce((sum, time) => sum + Math.floor(mid / time), 0);
+        let target = 0;
         
-        if (count >= n) {
+        for (const time of times) {
+            target += Math.floor(mid / time);
+        }
+        
+        if (target >= n) {
             answer = mid;
             right = mid - 1;
         } else {
             left = mid + 1;
         }
     }
-    
     return answer;
 }
