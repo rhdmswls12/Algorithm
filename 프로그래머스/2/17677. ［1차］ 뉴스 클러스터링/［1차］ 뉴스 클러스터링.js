@@ -1,44 +1,46 @@
 function solution(str1, str2) {
-    str1 = str1.toUpperCase().split('');
-    str2 = str2.toUpperCase().split('');
+    const set1 = makeSet(str1);
+    const set2 = makeSet(str2);
+    let intersection = 0;
+    let union = 0;
     
-    const arr1 = makeArr(str1);
-    const arr2 = makeArr(str2);
+    if (!set1.length && !set2.length) return 65536;
     
-    if (!arr1.length && !arr2.length) return 65536;
+    let map1 = new Map();
+    let map2 = new Map();
     
-    let same = [];
-    let visited = Array(arr2.length).fill(false);
+    for (const s of set1) {
+        map1.set(s, (map1.get(s) || 0) + 1);
+    }
     
-    for (let i=0; i<arr1.length; i++) {
-        for (let j=0; j<arr2.length; j++) {
-            if (!visited[j] && arr1[i] === arr2[j]) {
-                same.push(arr1[i]);
-                visited[j] = true;
-                break;
+    for (const s of set2) {
+        map2.set(s, (map2.get(s) || 0) + 1);
+    }
+
+    const keys = new Set([...map1.keys(), ...map2.keys()]);
+    
+    for (const key of keys) {
+        let count1 = map1.get(key) || 0;
+        let count2 = map2.get(key) || 0;
+        
+        intersection += Math.min(count1, count2);
+        union += Math.max(count1, count2);
+    }
+    
+    return Math.floor((intersection / union) * 65536);
+    
+    function makeSet(str) {
+        let result = [];
+        const reg = /^[A-Z]+$/;
+        
+        str = str.toUpperCase();
+        
+        for (let i=0; i<str.length-1; i++) {
+            const cur = str.slice(i, i+2);
+            if (reg.test(cur)) {
+                result.push(cur);   
             }
         }
+        return result;
     }
-    console.log('same', same)
-    const result1 = same.length;
-    console.log(arr1, arr2)
-    const result2 = arr1.length + arr2.length - result1;
-    
-    return Math.floor((result1/result2)*65536);
-} 
-function makeArr(arr) {
-    let result = [];
-    for (let i=0; i<arr.length; i++) {
-        let sum = '';
-        
-        if (arr[i+1] 
-            && arr[i].charCodeAt() >=65 
-            && arr[i].charCodeAt() <=90 
-            && arr[i+1].charCodeAt() >=65
-            && arr[i+1].charCodeAt() <=90) {
-            sum += arr[i]+arr[i+1];
-            result.push(sum);
-        }
-    }
-    return result;
 }
