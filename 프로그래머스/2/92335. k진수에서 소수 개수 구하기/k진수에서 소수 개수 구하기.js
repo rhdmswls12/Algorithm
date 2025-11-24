@@ -1,24 +1,21 @@
 function solution(n, k) {
-    let answer = 0
-    let array = []
-    let newNumber = n.toString(k) 
+    let answer = 0;
     
-    array = newNumber.split('0')
+    const numArr = n.toString(k).split('0');
     
-    for (let i=0; i<array.length; i++) {
-        let item = Number(array[i])
-        if (item && item !== 1) {
-            answer += isPrime(item)
-        }
+    for (const num of numArr) {
+        if (isPrime(num)) answer++;
     }
-    return answer
-}
-const isPrime = (num) => {
-    if (num === 2) return true
-    for (let i=2; i<=Math.floor(Math.sqrt(num)); i++) {
-        if (num % i === 0) {
-            return false
+    
+    return answer;
+    
+    function isPrime(num) {
+        if (num < 2) return false;
+        
+        for (let i=2; i<=Math.floor(Math.sqrt(num)); i++) {
+            if (num % i === 0) return false;
         }
+        
+        return true;
     }
-    return true
 }
