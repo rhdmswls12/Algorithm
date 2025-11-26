@@ -2,18 +2,14 @@ function solution(numbers) {
     let result = Array(numbers.length).fill(-1);
     let stack = [];
     
-    for (let i=numbers.length-1; i>=0; i--) {
-        let cur = numbers[i];
-        
-        while (stack && stack[stack.length-1] <= cur) {
-            stack.pop();
-        }
-        if (stack.length) {
-            result[i] = stack[stack.length-1];
+    for (let i=0; i<numbers.length; i++) {
+        while (numbers[i] > numbers[stack.at(-1)]) {
+            const index = stack.pop();
+            result[index] = numbers[i];
         }
         
-        stack.push(cur);
-        
+        stack.push(i);
     }
+    
     return result;
 }
