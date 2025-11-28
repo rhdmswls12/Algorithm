@@ -1,16 +1,10 @@
 function solution(prices) {
-    let answer = [];
-    
-    for (let i=prices.length-1; i>=0; i--) {
-        answer.push(i);
-    }
+    let answer = Array(prices.length).fill(0);
 
     for (let i=0; i<prices.length; i++) {
-        let cur = prices[i];
-        
         for (let j=i+1; j<prices.length; j++) {
-            if (cur > prices[j]) {
-                answer[i] = j - i;
+            answer[i]++;
+            if (prices[i] > prices[j]) {
                 break;
             }
         }
