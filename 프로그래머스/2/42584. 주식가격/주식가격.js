@@ -1,18 +1,19 @@
 function solution(prices) {
-    let stack = []
-    let result = new Array(prices.length).fill(0)
+    let answer = [];
     
+    for (let i=prices.length-1; i>=0; i--) {
+        answer.push(i);
+    }
+
     for (let i=0; i<prices.length; i++) {
-        stack.push(prices[i])
+        let cur = prices[i];
+        
         for (let j=i+1; j<prices.length; j++) {
-            if (stack[stack.length-1] > prices[j]) {
-                stack.pop()
-                result[i] = j-i
-                break
-            } else {
-                result[i] = prices.length-i-1
+            if (cur > prices[j]) {
+                answer[i] = j - i;
+                break;
             }
         }
     }
-    return result
+    return answer;
 }
