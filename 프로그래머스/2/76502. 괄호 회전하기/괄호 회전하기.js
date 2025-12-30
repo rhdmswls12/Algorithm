@@ -12,19 +12,20 @@ function solution(s) {
 
 function isCorrect(s) {
     const obj = {
-        '[': ']',
-        '{': '}',
-        '(': ')'
+        ']': '[',
+        '}': '{',
+        ')': '('
     }
     const stack = [];
     
-    for (const el of s) {
-        if (obj[stack.at(-1)] === el) {
-            stack.pop();
+    for (const ch of s) {
+        if (obj[ch]) {
+            if (obj[ch] === stack.at(-1)) stack.pop(); 
+            else return false;
         } else {
-            stack.push(el);
+            stack.push(ch);
         }
     }
     
-    return stack.length ? false : true;
+    return stack.length === 0;
 }
