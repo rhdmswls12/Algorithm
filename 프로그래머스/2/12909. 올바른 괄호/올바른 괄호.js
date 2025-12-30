@@ -1,13 +1,13 @@
 function solution(s){
-    const stack = [];
+    let answer = 0;
     
     for (const el of s) {
-        if (stack.at(-1) === '(' && el === ')') {
-            stack.pop();
+        if (answer > 0 && el === ')') {
+            answer--;
         } else {
-            stack.push(el);
+            answer++;
         }
     }
     
-    return stack.length ? false : true;
+    return answer ? false : true;
 }
