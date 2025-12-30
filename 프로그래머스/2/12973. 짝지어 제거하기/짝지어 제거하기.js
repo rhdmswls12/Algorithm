@@ -1,12 +1,12 @@
-function solution(s){
-    let stack = [];
+function solution(s) {
+    const stack = [];
     
-    for (let i=0; i<s.length; i++) {
-        if (stack[stack.length-1] === s[i]) {
+    for (const el of s) {
+        if (stack.at(-1) === el) {
             stack.pop();
         } else {
-            stack.push(s[i])
+            stack.push(el);
         }
     }
-    return stack.length ? 0 : 1;
+    return stack.length ? 0 : 1; 
 }
