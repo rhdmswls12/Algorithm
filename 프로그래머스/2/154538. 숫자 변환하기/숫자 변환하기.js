@@ -1,20 +1,21 @@
 function solution(x, y, n) {
     const queue = [[x, 0]];
-    const visited = new Set([x]);
+    const visited = new Set();
     let idx = 0;
+    visited.add(x);
     
     while (idx < queue.length) {
-        const [current, count] = queue[idx++];
+        const [cur, count] = queue[idx];
         
-        if (current === y) return count;
+        if (cur === y) return count;
         
-        for (const option of [current+n, current*2, current*3]) {
-
-            if (option <= y && !visited.has(option)) {
-                visited.add(option);
-                queue.push([option, count+1]);
+        for (const next of [cur + n, cur * 2, cur * 3]) {
+            if (next <= y && !visited.has(next)) {
+                visited.add(next);
+                queue.push([next, count + 1]);
             }
         }
+        idx++;
     }
     return -1;
 }
