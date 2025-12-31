@@ -1,4 +1,6 @@
 -- 코드를 작성해주세요
-SELECT ITEM_INFO.ITEM_ID "ITEM_ID", ITEM_INFO.ITEM_NAME "ITEM_NAME"
-FROM ITEM_INFO JOIN ITEM_TREE ON ITEM_INFO.ITEM_ID = ITEM_TREE.ITEM_ID
-WHERE ITEM_TREE.PARENT_ITEM_ID IS NULL
+select i.item_id, i.item_name
+from item_info i join item_tree t
+on i.item_id = t.item_id
+where t.parent_item_id is null
+order by i.item_id;
