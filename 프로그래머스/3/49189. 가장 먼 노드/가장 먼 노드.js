@@ -1,34 +1,34 @@
 function solution(n, edge) {
-    const list = {};
     const visited = Array(n + 1).fill(false);
-    const distance = Array(n + 1).fill(0);
+    const dist = Array(n + 1).fill(0);
     const queue = [1];
+    const graph = {};
+    let idx = 0;
     
     visited[1] = true;
     
     for (let i=1; i<=n; i++) {
-        list[i] = [];
+        graph[i] = [];
     }
     
     for (const [u, v] of edge) {
-        list[u].push(v);
-        list[v].push(u);
+        graph[u].push(v);
+        graph[v].push(u);
     }
     
-    while(queue.length) {
-        const node = queue.shift();
+    while (idx < queue.length) {
+        const node = queue[idx++];
         
-        for (const next of list[node]) {
+        for (const next of graph[node]) {
             if (!visited[next]) {
-                visited[next] = true;
-                distance[next] = distance[node] + 1;
                 queue.push(next);
+                visited[next] = true;
+                dist[next] = dist[node] + 1;
             }
         }
     }
     
-    const maxDist = Math.max(...distance);
+    const maxLength = Math.max(...dist);
     
-    return distance.filter(d => d === maxDist).length;
+    return dist.filter(d => d === maxLength).length;
 }
-
