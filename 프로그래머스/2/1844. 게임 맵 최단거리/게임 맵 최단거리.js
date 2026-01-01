@@ -4,9 +4,10 @@ function solution(maps) {
     const dx = [0, 0, -1, 1];
     const dy = [1, -1, 0, 0];
     const queue = [[0, 0, 1]];
+    let idx = 0;
     
-    while (queue.length) {
-        const [x, y, move] = queue.shift();
+    while (idx < queue.length) {
+        const [x, y, move] = queue[idx++];
         
         if (x === w && y === h) return move;
         
