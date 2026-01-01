@@ -5,17 +5,16 @@ function solution(x, y, n) {
     visited.add(x);
     
     while (idx < queue.length) {
-        const [cur, count] = queue[idx];
+        const [cur, count] = queue[idx++];
         
         if (cur === y) return count;
         
         for (const next of [cur + n, cur * 2, cur * 3]) {
-            if (next <= y && !visited.has(next)) {
+            if (!visited.has(next) && next <= y) {
                 visited.add(next);
-                queue.push([next, count + 1]);
+                queue.push([next, count+1]);
             }
         }
-        idx++;
     }
     return -1;
 }
