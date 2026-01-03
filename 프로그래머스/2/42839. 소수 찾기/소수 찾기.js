@@ -1,27 +1,18 @@
 function solution(numbers) {
-    let count = 0;
-    const nums = permute(numbers);
-    
-    for (const num of nums) {
-        if (isPrime(num)) {
-            count++;
-        }
-    }
-    return count;
-}
-
-function permute(arr) {
     const result = new Set();
-    const visited = Array(arr.length).fill(false);
+    const visited = Array(numbers.length).fill(false);
     
     function backtrack(path) {
-        if (path.length && path[0] !== '0') {
-            result.add([...path].join(''));
+        if (path.length) {
+            const num = Number(path.join(""));
+            if (isPrime(num)) {
+                result.add(num);
+            }
         }
-        for (let i=0; i<arr.length; i++) {
+        for (let i=0; i<numbers.length; i++) {
             if (visited[i]) continue;
             visited[i] = true;
-            path.push(arr[i]);
+            path.push(numbers[i]);
             backtrack(path);
             path.pop();
             visited[i] = false;
@@ -29,7 +20,7 @@ function permute(arr) {
     }
     
     backtrack([]);
-    return [...result];
+    return result.size;
 }
 
 function isPrime(num) {
