@@ -9,7 +9,7 @@ function solution(record) {
         const [keyword, id, nickname] = r.split(' ');
         
         if (keyword === 'Enter' || keyword === 'Change') {
-            map.set((id || ''), nickname);   
+            map.set(id, nickname);   
         }
     }
     
@@ -17,9 +17,9 @@ function solution(record) {
         const [keyword, id, nickname] = r.split(' ');
     
         if (keyword === 'Enter') {
-            result.push(`${map.get(id)}` + `${enter}`);
+            result.push(`${map.get(id)}${enter}`);
         } else if (keyword === 'Leave') {
-            result.push(`${map.get(id)}` + `${leave}`);
+            result.push(`${map.get(id)}${leave}`);
         } 
     }
     return result;
