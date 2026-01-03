@@ -1,42 +1,42 @@
 function solution(numbers) {
-    let answer = 0;
+    let count = 0;
     const nums = permute(numbers);
     
     for (const num of nums) {
-        if (isPrime(Number(num))) answer++;
+        if (isPrime(num)) {
+            count++;
+        }
     }
-    
-    function permute(str) {
-      const result = new Set();
-      const visited = Array(str.length).fill(false);
+    return count;
+}
 
-      function backtrack(path) {
+function permute(arr) {
+    const result = new Set();
+    const visited = Array(arr.length).fill(false);
+    
+    function backtrack(path) {
         if (path.length && path[0] !== '0') {
-          result.add([...path].join(''));
+            result.add([...path].join(''));
         }
-
-        for (let i = 0; i < str.length; i++) {
-          if (visited[i]) continue;
-          visited[i] = true;
-          path.push(str[i]);
-          backtrack(path);
-          path.pop();
-          visited[i] = false;
-        }
-      }
-
-      backtrack([]);
-      return [...result];
-    }
-        
-    function isPrime(num) {
-        if (num < 2) return false;
-        
-        for (let i=2; i<=Math.floor(Math.sqrt(num)); i++) {
-            if (num % i === 0) return false;
-        }
-        return true;
+        for (let i=0; i<arr.length; i++) {
+            if (visited[i]) continue;
+            visited[i] = true;
+            path.push(arr[i]);
+            backtrack(path);
+            path.pop();
+            visited[i] = false;
+         }
     }
     
-    return answer;
+    backtrack([]);
+    return [...result];
+}
+
+function isPrime(num) {
+    if (num < 2) return false;
+
+    for (let i=2; i<=Math.floor(Math.sqrt(num)); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
 }
