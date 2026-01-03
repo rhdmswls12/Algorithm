@@ -1,16 +1,26 @@
 function solution(priorities, location) {
-    let answer = 0
-    const array = priorities.map((process, index) => {
-        return {process, index}
-    })
-    while(array.length) {
-        let cur = array.shift()
-        if (array.some(el => el.process > cur.process)) {
-            array.push(cur)
+    const queue = [];
+    const order = [];
+    let idx = 0;
+    let maxPriority = Math.max(...priorities);
+    
+    for (let i=0; i<priorities.length; i++) {
+        queue.push([i, priorities[i]]);
+    }
+    
+    while (queue.length) {
+        const cur = queue.shift();
+        const curP = priorities.shift();
+        const [idx, priority] = cur;
+        
+        if (priority === maxPriority) {
+            order.push(idx);
+            maxPriority = Math.max(...priorities);
         } else {
-            answer++
-            if (cur.index === location) break
+            queue.push(cur);
+            priorities.push(curP);
         }
     }
-    return answer
+    
+    return order.indexOf(location) + 1;
 }
