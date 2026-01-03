@@ -1,12 +1,12 @@
 -- 코드를 작성해주세요
-WITH FISH_GROUP AS (
-    SELECT FISH_TYPE, MAX(LENGTH) MAX
-    FROM FISH_INFO
-    GROUP BY FISH_TYPE
+with type_max as (
+    select fish_type, max(length) max_length
+    from fish_info
+    group by fish_type
 )
-
-SELECT I.ID, N.FISH_NAME, I.LENGTH
-FROM FISH_INFO I JOIN FISH_NAME_INFO N
-ON I.FISH_TYPE = N.FISH_TYPE
-WHERE (I.FISH_TYPE, I.LENGTH) IN (SELECT * FROM FISH_GROUP)
-ORDER BY I.ID
+select i.id, n.fish_name, i.length
+from fish_info i join type_max t join fish_name_info n
+on i.fish_type = t.fish_type
+and i.length = t.max_length
+and i.fish_type = n.fish_type
+order by i.id;
