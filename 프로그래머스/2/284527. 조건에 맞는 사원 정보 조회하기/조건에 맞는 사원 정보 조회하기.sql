@@ -1,15 +1,10 @@
 -- 코드를 작성해주세요
+with high_score as
+(select emp_no, sum(score) score
+from hr_grade
+group by emp_no
+order by score desc limit 1)
 
-SELECT T.SCORE, G.EMP_NO, E.EMP_NAME, E.POSITION, E.EMAIL
-FROM HR_EMPLOYEES E JOIN HR_GRADE G JOIN
-(
-    SELECT EMP_NO, SUM(SCORE) SCORE
-    FROM HR_GRADE
-    WHERE YEAR = 2022
-    GROUP BY EMP_NO
-    ORDER BY SCORE DESC
-    LIMIT 1
-) T
-ON E.EMP_NO = G.EMP_NO AND G.EMP_NO = T.EMP_NO
-WHERE E.EMP_NO = G.EMP_NO 
-LIMIT 1
+select h.score, h.emp_no, e.emp_name, e.position, e.email
+from high_score h join hr_employees e
+on h.emp_no = e.emp_no
