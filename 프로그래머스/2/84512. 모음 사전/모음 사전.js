@@ -1,11 +1,21 @@
 function solution(word) {
-    const index = ['A', 'E', 'I', 'O', 'U'];
-    const weight = [781, 156, 31, 6, 1];
-    let answer = 0;
+    let count = 0;
+    let alphabet = ['A', 'E', 'I', 'O', 'U'];
     
-    for (let i=0; i<word.length; i++) {
-        answer += (index.indexOf(word[i]) * weight[i]) + 1;
+    function dfs(cur) {
+        if (cur.length > 0) count++;
+        
+        if (cur === word) return true;
+        
+        if (cur.length === 5) return false;
+        
+        for (const a of alphabet) {
+            if (dfs(cur + a)) return true;
+        }
+        
+        return false;
     }
     
-    return answer;
+    dfs("");
+    return count;
 }
