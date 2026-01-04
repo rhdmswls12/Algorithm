@@ -1,5 +1,5 @@
 -- 코드를 입력하세요
-SELECT IF(FLOOR(PRICE/10000)>0, CONCAT(FLOOR(PRICE/10000),'0000'), 0) PRICE_GROUP, COUNT(*) PRODUCTS
-FROM PRODUCT
-GROUP BY PRICE_GROUP
-ORDER BY PRICE_GROUP
+SELECT floor(price / 10000) * 10000 price_group, count(product_id) products
+from product
+group by floor(price / 10000) * 10000
+order by price_group;
