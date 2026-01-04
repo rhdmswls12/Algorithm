@@ -1,14 +1,13 @@
 function solution(s) {
-    const arr = JSON.parse(s.replace(/{/g, "[").replace(/}/g, "]"));
-    arr.sort((a, b) => a.length - b.length);
+    const set = new Set();
     
-    let set = new Set();
-    
-    for (let i=0; i<arr.length; i++) {
-        for (let j=0; j<arr[i].length; j++) {
-            set.add(arr[i][j]);
+    s = JSON.parse(s.replace(/{/g, '[').replace(/}/g, ']')).sort((a, b) => {
+        return a.length - b.length
+    });
+    for (const arr of s) {
+        for (const a of arr) {
+            set.add(a);
         }
-    }
-    const answer = [...set];
-    return answer;
+    } 
+    return [...set];
 }
