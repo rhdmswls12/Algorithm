@@ -1,8 +1,6 @@
 -- 코드를 입력하세요
-SELECT P.PRODUCT_CODE, (O.SUM * P.PRICE) 'SALES'
-FROM PRODUCT P JOIN (
-SELECT PRODUCT_ID, SUM(SALES_AMOUNT) 'SUM'
-FROM OFFLINE_SALE
-GROUP BY PRODUCT_ID) O
-ON P.PRODUCT_ID = O.PRODUCT_ID
-ORDER BY SALES DESC, P.PRODUCT_CODE
+SELECT p.product_code, sum(p.price * o.sales_amount) sales
+from product p join offline_sale o
+on p.product_id = o.product_id
+group by p.product_code
+order by 2 desc, 1;
