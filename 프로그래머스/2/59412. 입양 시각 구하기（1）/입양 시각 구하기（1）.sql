@@ -1,6 +1,6 @@
 -- 코드를 입력하세요
-SELECT DATE_FORMAT(DATETIME, '%H') HOUR, COUNT(*) COUNT
-FROM ANIMAL_OUTS
-GROUP BY HOUR
-HAVING HOUR>8 AND HOUR<20
-ORDER BY HOUR
+SELECT hour(datetime) hour, count(animal_id) count
+from animal_outs
+where hour(datetime) >= 9 and hour(datetime) < 20
+group by hour(datetime)
+order by hour;
