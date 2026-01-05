@@ -1,10 +1,9 @@
 -- 코드를 작성해주세요
-SELECT ITEM_INFO.ITEM_ID, ITEM_INFO.ITEM_NAME, ITEM_INFO.RARITY
-FROM ITEM_INFO JOIN ITEM_TREE  
-ON ITEM_INFO.ITEM_ID = ITEM_TREE.ITEM_ID
-WHERE ITEM_TREE.ITEM_ID NOT IN (
-SELECT DISTINCT PARENT_ITEM_ID
-FROM ITEM_TREE
-WHERE PARENT_ITEM_ID IS NOT NULL 
-)
-ORDER BY ITEM_INFO.ITEM_ID DESC
+select item_id, item_name, rarity
+from item_info
+where item_id in (
+select p.item_id
+from item_tree p left join item_tree c
+on p.item_id = c.parent_item_id
+where c.item_id is null)
+order by 1 desc;
