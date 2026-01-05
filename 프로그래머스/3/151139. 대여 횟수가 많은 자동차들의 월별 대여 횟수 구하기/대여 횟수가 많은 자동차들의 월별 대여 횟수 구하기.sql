@@ -1,15 +1,15 @@
 -- 코드를 입력하세요
-SELECT 
-MONTH(START_DATE) AS MONTH,
-CAR_ID, 
-COUNT(CAR_ID) AS RECORDS
-FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
-WHERE CAR_ID IN (SELECT CAR_ID
-                FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY 
-                WHERE DATE_FORMAT(START_DATE, '%Y-%m') >='2022-08' 
-                AND DATE_FORMAT(START_DATE, '%Y-%m') <= '2022-10'
-                GROUP BY CAR_ID
-                HAVING COUNT(CAR_ID) >= 5
-                ORDER BY CAR_ID) AND MONTH(START_DATE) BETWEEN 8 AND 10
-GROUP BY MONTH, CAR_ID                
-ORDER BY MONTH, CAR_ID DESC
+with records as
+(select car_id, count(car_id) count
+from CAR_RENTAL_COMPANY_RENTAL_HISTORY
+where start_date >= '2022-08-01' and start_date < '2022-11-01'
+group by car_id
+having count >= 5
+order by car_id)
+
+select month(c.start_date) month, c.car_id, count(*) records
+from records r join CAR_RENTAL_COMPANY_RENTAL_HISTORY c
+on r.car_id = c.car_id
+where start_date >= '2022-08-01' and start_date < '2022-11-01'
+group by month(c.start_date), c.car_id
+order by 1, 2 desc;
